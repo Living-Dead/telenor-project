@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.title-wrapper {
+    margin-top: 30px;
+}
+
+.title {
+    color: #19aaf8;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.lastBuildDate {
+    font-size: 16px;
+    color: #19aaf8;
+    font-weight: bold;
+}
+
+.xpath {
+    color: #19aaf8;
+
+    font-weight: bold;
+    font-size: 18px;
+}
+</style>
+</head>
+<body>
+<span> Last Build Date XPATH:</span>
+<div class="xpath" id="xpath"></div>
+</br>
+
+<div>
+    <span> Last build date:
+        <span class="lastBuildDate" id="lastBuildDate"></span>
+    </span>
+</div>
+
+<div class="title-wrapper">
+    <span> Title:</span>
+    <p id="title"></p>
+</div>
+
+<script>
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        showLastBuildDateWithXPATH(xhttp.responseXML);
+        showTitleWithXPATH(xhttp.responseXML);
+    }
+};
+xhttp.open('GET', 'https://index.hu/24ora/rss/', true);
+xhttp.send(); 
+
+function showLastBuildDateWithXPATH(xml) {
+    var txt = '';
+    path = '/rss/channel/lastBuildDate';
+    document.getElementById('xpath').innerHTML = path;
+
+    if (xml.evaluate) {
+        var nodes = xml.evaluate(path, xml, null, XPathResult.ANY_TYPE, null);
+        var result = nodes.iterateNext();
+        while (result) {
+            txt += result.childNodes[0].nodeValue + '<br>';
+            result = nodes.iterateNext();
+        } 
+    // Code For Internet Explorer
+    } else if (window.ActiveXObject || xhttp.responseType == 'msxml-document') {
+        xml.setProperty('SelectionLanguage', 'XPath');
+        nodes = xml.selectNodes(path);
+        for (i = 0; i < nodes.length; i++) {
+            txt += nodes[i].childNodes[0].nodeValue + '<br>';
+        }
+    }
+    document.getElementById('lastBuildDate').innerHTML = txt;
+}
+
+function showTitleWithXPATH(xml) {
+    var txt = '';
+    path = '/rss/channel/item/title';
+
+    if (xml.evaluate) {
+        var nodes = xml.evaluate(path, xml, null, XPathResult.ANY_TYPE, null);
+        var result = nodes.iterateNext();
+        while (result) {
+            txt += '<span class="title">' + result.childNodes[0].nodeValue + '<span><br>';
+            result = nodes.iterateNext();
+        } 
+    // Code For Internet Explorer
+    } else if (window.ActiveXObject || xhttp.responseType == 'msxml-document') {
+        xml.setProperty('SelectionLanguage', 'XPath');
+        nodes = xml.selectNodes(path);
+        for (i = 0; i < nodes.length; i++) {
+            txt += nodes[i].childNodes[0].nodeValue + '<br>';
+        }
+    }
+    document.getElementById('title').innerHTML = txt;
+}
+</script>
+
+</body>
+</html>
