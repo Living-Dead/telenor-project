@@ -1,0 +1,21 @@
+.current-date-wrapper {
+	margin-bottom: 15px;
+
+	.current-date-text {
+		font-size: 18px;
+		margin-right: 5px;
+	}
+
+	.current-date {
+		color: #39cccc;
+		font-size: 18px;
+	}
+
+	.current-date-day,
+	.current-date-month,
+	.current-date-year {
+		color: #39cccc;
+		font-size: 18px;
+		text-transform: capitalize;
+	}
+}

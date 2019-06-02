@@ -1,0 +1,27 @@
+<div class="current-date-wrapper">
+  <span class="current-date-text"
+  	[textContent]="this.date.text.date"></span>
+  <span class="current-date"
+  	[textContent]="this.date.value.currentDateFormat"></span>
+</div>
+
+<div class="current-date-wrapper">
+  <span class="current-date-text"
+  	[textContent]="this.date.text.year"></span>
+  <span class="current-date-year"
+  	[textContent]="this.date.value.year"></span>
+</div>
+
+<div class="current-date-wrapper">
+  <span class="current-date-text"
+  	[textContent]="this.date.text.month"></span>
+  <span class="current-date-month"
+  	[textContent]="this.date.value.currentDateHuMonth"></span>
+</div>
+
+<div class="current-date-wrapper">
+  <span class="current-date-text"
+  	[textContent]="this.date.text.day"></span>
+  <span class="current-date-day"
+  	[textContent]="this.date.value.currentDateDay + '&#x0002C;&nbsp;' +this.date.value.currentDateHuDay"></span>
+</div>
