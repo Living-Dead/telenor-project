@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="weatherForecast.js" charset="UTF-8"></script>
+    <link rel="stylesheet" href="weatherForecast.css">
+</head>
+<div style="text-align:center">
+  <div class="telenor-project">
+  <h1>
+    Telenor Dark Sky API Test Project!
+  </h1>
+</div>
+<body onload="loadXMLDoc()">
+    <table id="q-graph">
+        <tbody id="weather">
+        </tbody>
+    </table>
+    <div id="ticks">
+        <div class="tick" style="height: 10px;">
+            <p>50</p>
+        </div>
+        <div class="tick" style="height: 10px;">
+            <p>40</p>
+        </div>
+        <div class="tick" style="height: 10px;">
+            <p>30</p>
+        </div>
+        <div class="tick" style="height: 10px;">
+            <p>20</p>
+        </div>
+        <div class="tick" style="height: 10px;">
+            <p>10</p>
+        </div>
+        <div class="tick" style="height: 0px;">
+            <p>0</p>
+        </div>
+    </div>
+    <div class="current-date" id="currentDate"></div>
+</body>
+</html>
